@@ -1,4 +1,11 @@
 pipeline:
+  test_build:
+    image: docker
+    commands:
+      - docker build
+    when:
+      event: [ pull_request ]
+      branch: [ master ]
   push_container_image:
     image: spscommerce/plugin-ecr
     repo: 056684691971.dkr.ecr.us-east-1.amazonaws.com/spscommerce/docker-oracle-xe-11g
@@ -6,5 +13,5 @@ pipeline:
       - latest
       - ${DRONE_COMMIT_SHA}
     when:
-      event: [ pull_request, push ]
+      event: [ push ]
       branch: [ master ]
