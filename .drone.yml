@@ -1,0 +1,10 @@
+pipeline:
+  push_container_image:
+    image: spscommerce/plugin-ecr
+    repo: 056684691971.dkr.ecr.us-east-1.amazonaws.com/spscommerce/docker-oracle-xe-11g
+    tags:
+      - latest
+      - ${DRONE_COMMIT_SHA}
+    when:
+      event: [ pull_request, push ]
+      branch: [ master ]
